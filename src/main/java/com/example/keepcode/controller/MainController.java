@@ -1,15 +1,9 @@
 package com.example.keepcode.controller;
 
-import com.example.keepcode.client.KeepCodeHttpClient;
-import com.example.keepcode.util.ButtonUtil;
+import com.example.keepcode.util.CommonUtil;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -30,7 +24,8 @@ public class MainController {
     @FXML
     void initialize() {
 
-        availableNumbersButton.setOnAction(actionEvent -> ButtonUtil.openNewWindow(availableNumbersButton, "/com/example/keepcode/available-numbers.fxml"));
+        priceListButton.setOnAction(actionEvent -> CommonUtil.openNewWindow(priceListButton, "/com/example/keepcode/services.fxml"));
+        availableNumbersButton.setOnAction(actionEvent -> CommonUtil.openNewWindow(availableNumbersButton, "/com/example/keepcode/available-numbers.fxml"));
 
     }
 

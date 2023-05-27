@@ -6,7 +6,10 @@ module com.example.keepcode {
     requires jackson.databind;
     requires java.sql;
     requires jackson.datatype.jsr310;
-
+    requires org.jsoup;
+    requires org.seleniumhq.selenium.chrome_driver;
+    requires org.seleniumhq.selenium.api;
+    requires org.seleniumhq.selenium.remote_driver;
 
     opens com.example.keepcode to javafx.fxml;
     exports com.example.keepcode;

@@ -3,21 +3,16 @@ package com.example.keepcode.controller;
 import com.example.keepcode.client.KeepCodeHttpClient;
 import com.example.keepcode.entity.Country;
 import com.example.keepcode.entity.NumberDetail;
-import com.example.keepcode.util.ButtonUtil;
+import com.example.keepcode.util.CommonUtil;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.Objects;
@@ -57,19 +52,7 @@ public class AvailableNumbersController {
     @FXML
     void initialize() {
         List<Country> countries = client.getCountries();
-        ObservableList<Country> countryObservableList = FXCollections.observableArrayList(countries);
-        availableNumbersList.setCellFactory(param -> new ListCell<>() {
-            @Override
-            protected void updateItem(Country country, boolean empty) {
-                super.updateItem(country, empty);
-                if (empty || country == null || country.getName() == null) {
-                    setText(null);
-                } else {
-                    setText(country.getName());
-                }
-            }
-        });
-        availableNumbersList.setItems(countryObservableList);
+        CommonUtil.setCountriesInListView(availableNumbersList, countries);
 
         availableNumbersList.getSelectionModel().selectedItemProperty().addListener(this::selectionChanged);
 
@@ -83,7 +66,7 @@ public class AvailableNumbersController {
             }
         });
 
-        mainMenuButton.setOnAction(actionEvent -> ButtonUtil.openNewWindow(mainMenuButton, "/com/example/keepcode/main-view.fxml"));
+        mainMenuButton.setOnAction(actionEvent -> CommonUtil.openNewWindow(mainMenuButton, "/com/example/keepcode/main-view.fxml"));
     }
 
     private void selectionChanged(Observable observable) {
